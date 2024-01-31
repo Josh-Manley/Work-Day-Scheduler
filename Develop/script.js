@@ -6,7 +6,7 @@ $(function () {
   $(function () {
     // Display Current Day
     let currentDay = document.getElementById("currentDay");
-    currentDay.innerHTML = dayjs().format('dddd MMM YYYY h:mA');
+    currentDay.innerHTML = dayjs().format('dddd MMM YYYY h:mmA');
   
     // Create Time Blocks
     const businessHours = 9; // Start of business hours
