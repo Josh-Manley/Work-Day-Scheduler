@@ -56,27 +56,30 @@ $(function () {
       // You can add specific behavior when a time block is clicked if needed
     });
 
-    // Save Event
-     $(".saveBtn").on("click", function () {
-    const blockId = $(this).closest(".time-block").attr("id");
+     // Save Event
+  $(".saveBtn").on("click", function () {
+    const hour = $(this).closest(".time-block").find(".hour").text().trim();
+    const blockId = "hour-" + (hour > 12 ? hour - 12 + "PM" : hour + "AM");
     const eventText = $(this).siblings(".description").val();
 
     localStorage.setItem(blockId, eventText);
-    });
+  });
 
-     // Persist Saved Events
-      function loadSavedEvents() {
-      $(".time-block").each(function () {
-      const blockId = $(this).attr("id");
+  // Persist Saved Events
+  function loadSavedEvents() {
+    $(".time-block").each(function () {
+      const hour = $(this).find(".hour").text().trim();
+      const blockId = "hour-" + (hour > 12 ? hour - 12 + "PM" : hour + "AM");
       const savedEvent = localStorage.getItem(blockId);
 
       if (savedEvent) {
-      $(this).find(".description").val(savedEvent);
-        }
-      });
+        $(this).find(".description").val(savedEvent);
       }
+    });
+  }
 
-       // Initial setup
+
+    // Initial setup
     updateColorCode();
     loadSavedEvents();
   
