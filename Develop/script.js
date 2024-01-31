@@ -64,6 +64,25 @@ $(function () {
     localStorage.setItem(blockId, eventText);
     });
 
+     // Persist Saved Events
+      function loadSavedEvents() {
+      $(".time-block").each(function () {
+      const blockId = $(this).attr("id");
+      const savedEvent = localStorage.getItem(blockId);
+
+      if (savedEvent) {
+      $(this).find(".description").val(savedEvent);
+        }
+      });
+      }
+
+       // Initial setup
+    updateColorCode();
+    loadSavedEvents();
+  
+    // Update color code every minute
+    setInterval(updateColorCode, 60000);
+
  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
