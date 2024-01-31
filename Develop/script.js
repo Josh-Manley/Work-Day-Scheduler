@@ -7,7 +7,11 @@ $(function () {
     // Display Current Day
     let currentDay = document.getElementById("currentDay");
     currentDay.innerHTML = dayjs().format('dddd MMM YYYY h:mA');
-  }
+  
+      // Create Time Blocks
+      const businessHours = 9; // Start of business hours
+      const endBusinessHours = 17; // End of business hours
+      const container = $(".container-fluid");
  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -28,3 +32,4 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+})
