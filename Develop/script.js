@@ -4,6 +4,7 @@
 $(function () {
 
   $(function () {
+    // TODO: Add code to display the current date in the header of the page.
     // Display Current Day
     let currentDay = document.getElementById("currentDay");
     currentDay.innerHTML = dayjs().format('dddd MMM YYYY h:mmA');
@@ -34,6 +35,12 @@ $(function () {
       container.append(timeBlock);
     }
 
+  // TODO: Add code to apply the past, present, or future class to each time
+  // block by comparing the id to the current hour. HINTS: How can the id
+  // attribute of each time-block be used to conditionally add or remove the
+  // past, present, and future classes? How can Day.js be used to get the
+  // current hour in 24-hour time?
+
      // Color Code Time Blocks
      function updateColorCode() {
       const currentHour = dayjs().hour();
@@ -56,6 +63,13 @@ $(function () {
       // You can add specific behavior when a time block is clicked if needed
     });
 
+  // TODO: Add a listener for click events on the save button. This code should
+  // use the id in the containing time-block as a key to save the user input in
+  // local storage. HINT: What does `this` reference in the click listener
+  // function? How can DOM traversal be used to get the "hour-x" id of the
+  // time-block containing the button that was clicked? How might the id be
+  // useful when saving the description in local storage?
+
      // Save Event
   $(".saveBtn").on("click", function () {
     const hour = $(this).closest(".time-block").find(".hour").text().trim();
@@ -64,6 +78,10 @@ $(function () {
 
     localStorage.setItem(blockId, eventText);
   });
+
+  // TODO: Add code to get any user input that was saved in localStorage and set
+  // the values of the corresponding textarea elements. HINT: How can the id
+  // attribute of each time-block be used to do this?
 
   // Persist Saved Events
   function loadSavedEvents() {
@@ -77,33 +95,11 @@ $(function () {
       }
     });
   }
-
-
     // Initial setup
     updateColorCode();
     loadSavedEvents();
   
     // Update color code every minute
     setInterval(updateColorCode, 60000);
-
- 
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
+  });
 })
