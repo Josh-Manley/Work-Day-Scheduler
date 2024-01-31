@@ -51,6 +51,19 @@ $(function () {
       });
     }
 
+     // Enter Event
+     $(".description").on("click", function () {
+      // You can add specific behavior when a time block is clicked if needed
+    });
+
+    // Save Event
+     $(".saveBtn").on("click", function () {
+    const blockId = $(this).closest(".time-block").attr("id");
+    const eventText = $(this).siblings(".description").val();
+
+    localStorage.setItem(blockId, eventText);
+    });
+
  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
