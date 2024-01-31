@@ -8,10 +8,32 @@ $(function () {
     let currentDay = document.getElementById("currentDay");
     currentDay.innerHTML = dayjs().format('dddd MMM YYYY h:mA');
   
-      // Create Time Blocks
-      const businessHours = 9; // Start of business hours
-      const endBusinessHours = 17; // End of business hours
-      const container = $(".container-fluid");
+    // Create Time Blocks
+    const businessHours = 9; // Start of business hours
+    const endBusinessHours = 17; // End of business hours
+    const container = $(".container-fluid");
+
+    for (let hour = businessHours; hour <= endBusinessHours; hour++) {
+      // Create time block elements
+      const timeBlock = $("<div>").addClass("row time-block");
+      const hourDiv = $("<div>")
+      .addClass("col-2 col-md-1 hour text-center py-3")
+      .text(hour > 12 ? hour - 12 + "PM" : hour + "AM");
+      
+      const textarea = $("<textarea>").addClass("col-8 col-md-10 description").attr("id", "hour-" + hour);
+
+      const saveBtn = $("<button>")
+        .addClass("btn saveBtn col-2 col-md-1")
+        .attr("aria-label", "save")
+        .html('<i class="fas fa-save" aria-hidden="true"></i>');
+  
+      // Append elements to time block
+      timeBlock.append(hourDiv, textarea, saveBtn);
+  
+      // Append time block to container
+      container.append(timeBlock);
+    }
+
  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
